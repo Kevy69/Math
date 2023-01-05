@@ -1,0 +1,276 @@
+notes:
+    Remember:
+        ways to solve system of equations: (good to know)
+            eliminiation -> reduced form -> reduced row echelon form
+            substitution
+            plotting/graphing
+
+
+        System of equations rref:
+            Rules:
+                1. if row is all zeros = redundant equation (can be removed).
+                2. if variables are zero but not answere (e.g [0, 0, 2]), than the system lacks a solution
+                3. if (atleast) two variables arent zero and you've fully simplified the system (to rref),
+                    than there are infinite solutions (use parametric form)
+
+
+        vector/matrix/tensor operations:
+            1. Vector +&- Vector = Vector | name: Vector-addition/subtraction
+                equations:
+                    u = (1,2,3)
+                    v = (1,2,3)
+
+                    u + v = (2, 4, 6)
+                    u - v = (0, 0, 0)
+
+            2. Vector *&/ Vector = Vector | name: Vector-multiplication/division
+                equations:
+                    u = (1,2,3)
+                    v = (1,2,3)
+
+                    u * v = (1, 4, 9)
+                    u / v = (1, 1, 1)
+
+
+            3. Vector * Vector = scalar | name: vector dot product
+                definition: multiply each index with the respective index (in the other vector) and sum the values
+
+                equations:
+                    u * v = u₁v₁ + u₁v₁
+
+                example: [1,2,3] * [1,2,3] = 1*1 + 2*2 + 3*3 = 14
+
+                note: if the vector dot product is equal to zero, than the two vectors are orthogonal (perpendicular)
+            
+            4. Matrix * Matrix = Matrix | name: Matrix multiplication
+                definition: multiply the columns of the first matrix by the rows of second matrix.
+
+
+        parallelism:
+            equation: u = λv
+
+            definition: When two vectors are parallel (e.g on the same line, but opposit eachother)
+            the equation (e.g all equations in the resulting system) should solve. if not, than they arent parallel.
+
+
+        linear combination
+            equation:
+                x₁[1, 2, 3] + x₂[4, 5, 6] = [7, 8, 9]
+                aka
+                x₁u₁ + x₂u2 = v
+            
+            definition: Can we find a linear combination of scalars to multiply each vector with, such that
+                        the sum of the entire expression equals the vector v.
+
+            example:
+                # Note: following example has 2 unknowns but 3 equation
+
+                v = [7, 8, 9] # vector thats supposedly a linear combination
+
+                u₁ = [1, 2, 3]
+                u₂ = [4, 5, 6]
+
+                # arrange into equation form
+                x₁[1, 2, 3] + x₂[4, 5, 6] = [7, 8, 9]
+                # aka
+                x₁u₁ + x₂u₂ = v
+
+                # arrange into matrix notation and solve using gaussian elimination
+                [1  4  7]
+                [2  5  8]
+                [3  6  9]
+        
+
+        vector length:
+            equation: d = √u₁² + u₁²
+            
+            definition: Use pythagorean theorem to get the vector length
+
+
+        parametric form:
+            definition: all free variables to the right, all "known/static" to the left.
+
+            steps:
+                1. solve for all pivot columns
+                2. Regard none pivot column unknowns to be free variable
+                3. write out the equation in its normal form
+                4. move all free and none constant variables to the right.
+                5. define free variables (y = t, z = s.. etc.)
+                6. write out the entire equation and the defined free variables with correct names.
+
+
+        Get parametric equation for plane:
+            definition: Find the equation of a plane given 3 points.
+
+            example:
+
+                # Points
+                p₁ = [1, 0, 3]
+                p₂ = [-1, 2, -1]
+                p₃ = [1, 1, 2]
+
+                # Get vector arrows from points:
+                u₁ = p₂ - p₁
+                u₂ = p₃ - p₁
+
+                r = p₁ + t*u₁ + s*u₂
+
+                # convert to parametric form
+                [x, y, z] = p₁ + t*u₁ + s*u₂
+        
+
+        Get normal-form equation for plane (not needed):
+            definition: Find the equation of a plane given 3 points.
+
+            equation: a(x-x₀) + b(y-y₀) + c(z-z₀) = 0
+
+            example:
+
+                p₁ = [2, 1, 3]
+                p₂ = [1, -1, 2]
+                p₃ = [3, 1, -1]
+
+                # Get the two vectors between the points
+                v₁ = [1, -1, 2] - [2, 1, 3] = [-1, -2, -1]
+                v₂ = [3, 1, -1] - [2, 1, 3] = [1, 0, -4]
+
+                # Get the normal factor by getting the cross product of the vectors
+                FIX = [8, -5, 2]
+
+                # Merge normal vector with one of the points (like p₁)
+                a(x-(2)) + b(y-(1)) + c(z-(3)) = 0
+                a(x-2) + b(y-1) + c(z-3) = 0
+
+                # simplify
+                8x - 5y + 2z - 17 = 0
+        
+
+        get intersection of two planes:
+            definition: find intersection line of two planes.
+
+            steps:
+                1. form a system of equations, using the two plane equations
+                2. convert to matrix notation
+                3. solve
+                4. write out equation in parametric form.
+                5. note:
+                    - if no solution is found, than they dont intersect.
+                    - if more than two free variables exist, the planes "sammanfaller"
+
+        
+        get intersection of line and plane:
+            definition: find intersection line of two planes.
+
+            steps:
+                1. merge equation for plane and line (with = in between).
+                2. solve to get value of otherwise free varibales (e.g s, t, r).
+                3. plug the known variables into the plane equation to get the point (x, y z)
+
+
+        skalärprodukt:
+            rules:
+                1. when multiplying two vectors, always add the dot. e.g u * u
+                2. always add an exponent to the norm. e.g ||u|| should be ||u||²
+                3. u * u = ||u||²
+        
+
+        Baser och linjäart oberoende:
+            definition: Two dectors are linearly independant if the equation solves. If however, you get
+            an infinite number of solutions (e.g free variables), than its linearly dependant.
+
+            equation1: x₁[1, 2] + x₂[1, 2] = 0
+
+            equation2: (AᵀA)x = (AᵀB)
+            [[1, 2, 3]][x, y] = [1, 2, 3]
+
+
+
+        orthogonality & orthogonal projection:
+            definition:
+                1. if a vector dot product is equal to zero, than the two vectors are orthogonal (perpendicular).
+                2. The orthogonal projection of two vectors is essentially a perpendicular vector with a length
+                   that leads to a 90 degreee angle between the two vectors.
+
+                   it can be seen as the shadow casting from the above vector, down onto the one below.
+                
+            equation: o = (u*v)v
+            equation: u' = u - (u * n / ||n||²)n
+
+            example1:
+                "Calculate the orthogonal projection of u onto v"
+
+                u = [1, 3, -2]
+                v = [2, 2, -1]
+
+                o = (u * v / ||v||²)v
+            
+            example2:
+
+        
+        matrices:
+            remember:
+                (AB)ᵀ = BᵀAᵀ
+        
+        Eigenvalues:
+            definition: ...
+
+            equation:
+                # To solve for known vectors
+                Ax = λx
+
+                # To solve for unknown eigenvalues and eigenvectors (e.g if you've only got a matrix)
+                # Note: I = Identity matrix
+                (A - λI)x = 0
+            
+            examples:
+                x = [1, 1]
+
+                A = [-2, 1
+                     1,- 2]
+                
+                # (replace A and x with corresponding matrix/vector)
+                A * x = λ[-1, -1]
+
+                # Work out lambda such that the two vectors equal eachother
+                A * x = -1[-1, -1]
+
+                λ = -1
+
+                # Answere: The vector x is an eigen vector to/of matrix A, with the eigen value of -1.
+                # note: If you cant get the vectors to match OR if the vectors are both zero vectors,
+                # than they arent eigen vectors.
+
+
+                A = [1, 3
+                     12, 1]
+                
+                # Replace A and the identity matrix with corresponding values
+                (A - λI)x = 0
+
+                # Solve
+                [1-λ, 3
+                 12, 1-λ] = 0
+                
+                # factor out and solve
+                (1-λ)(1-λ)-(3)*(12) = 0
+
+                # Solve using factorial or PQ to get eigenvalues
+                λ₁ = 7
+                λ₂ = -5
+
+                # Get eigenvectors by substituting former lambda matrix with an eigenvalue (at a time)
+                ([1-7, 3
+                 12, 1-7])[x₁, x₂] = [0, 0]
+                
+                # solve using gausselimination, expand out to an equation
+                -6x₁ + 3x₂ = 0
+
+                # move one of the terms to the right and set that x to an arbitrary value (e.g 1)
+                # than solve for x's
+                3x₂ = 6x₁
+                3x₂ = 6 * 1
+
+                x₁ = 1
+                x₂ = 2
+
+                # Repeat for the other eigenvalue.
